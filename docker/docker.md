@@ -13,3 +13,10 @@ docker run hello-world
 ```
 
 ### 3. exec
+```
+docker exec containerid /bin/bash
+```
+### 4. start/stop/restart
+```
+docker start/stop/restart containerid/containername
+```
