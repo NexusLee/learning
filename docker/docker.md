@@ -24,3 +24,9 @@ docker exec containerid /bin/bash
 ```
 docker start/stop/restart containerid/containername
 ```
+
+### 5. network create 
+```
+docker network create --driver bridge my_net
+```
+
