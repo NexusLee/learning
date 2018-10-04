@@ -50,4 +50,8 @@ s = { 'boy', 'girl' }
 s = { ('a', 'b', 'c') }
 ```
 ```
+se = { 11, 22, 33 }
+be = { 22, 55 }
+se.difference(be) => { 11, 33 }
+se.difference_update(be) => { 11, 33 }
 ```
