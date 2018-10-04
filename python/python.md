@@ -39,6 +39,13 @@ del list[6] => [1,2,3,4,5,6]
 ### 三、set
 ##### 创建
 ```
-s = new set()
+s = set()
+s = { 11, 22, 33, 44 }
 ```
-
+```
+s = set('boy')
+s = set(['a', 'b', 'c'])
+s = set({'key1': 'value1', 'key2': 'value2'})
+s = { 'boy', 'girl' }
+s = { ('a', 'b', 'c') }
+```
