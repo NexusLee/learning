@@ -1,4 +1,4 @@
-### 一、集合collections
+### 一、collections
 ##### OrderedDict
 ```
 from collections import OrderedDict
@@ -17,27 +17,27 @@ p.x => 1
 p.y => 2
 ```
 
-### 二、列表list
+### 二、list
 ```
 list = [1, 2, 3, 4, 5, 6, 7 ]
 ```
 
-##### 列表访问
+##### list访问
 ```
 list[0] => 1
 list[1:5] => [2, 3, 4, 5]
 ```
-##### 列表更新
+##### list更新
 ```
 list[6] = 8 => [1,2,3,4,5,6,8] 
 list.append(8) => [1,2,3,4,5,6,7,8]
 ```
-##### 列表删除
+##### list删除
 ```
 del list[6] => [1,2,3,4,5,6] 
 ```
 ### 三、set
-##### 创建
+##### set创建
 ```
 s = set()
 s = { 11, 22, 33, 44 }
@@ -48,4 +48,6 @@ s = set(['a', 'b', 'c'])
 s = set({'key1': 'value1', 'key2': 'value2'})
 s = { 'boy', 'girl' }
 s = { ('a', 'b', 'c') }
+```
+```
 ```
