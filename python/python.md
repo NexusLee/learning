@@ -55,3 +55,17 @@ be = { 22, 55 }
 se.difference(be) => { 11, 33 }
 se.difference_update(be) => { 11, 33 }
 ```
+```
+se = { 11, 22, 33 }
+se.discard(11)
+se.discard(44) => No Error
+```
+```
+se = { 11, 22, 33 }
+se.remove(11)
+se.remove(44) => Error
+```
+```
+se = { 11, 22, 33 }
+temp = se.pop() => 33
+```
