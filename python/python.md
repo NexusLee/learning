@@ -49,12 +49,14 @@ s = set({'key1': 'value1', 'key2': 'value2'})
 s = { 'boy', 'girl' }
 s = { ('a', 'b', 'c') }
 ```
+##### set比较
 ```
 se = { 11, 22, 33 }
 be = { 22, 55 }
 se.difference(be) => { 11, 33 }
 se.difference_update(be) => { 11, 33 }
 ```
+##### set删除
 ```
 se = { 11, 22, 33 }
 se.discard(11)
@@ -69,3 +71,9 @@ se.remove(44) => Error
 se = { 11, 22, 33 }
 temp = se.pop() => 33
 ```
+##### set交集
+##### set判断
+##### set合并
+##### set并集
+##### set更新
+##### set转换
