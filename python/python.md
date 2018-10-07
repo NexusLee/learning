@@ -72,8 +72,55 @@ se = { 11, 22, 33 }
 temp = se.pop() => 33
 ```
 ##### set交集
+```
+se = { 11, 22, 33 }
+be = { 22, 55 }
+temp1 = se.intersection(be)
+temp1 => { 22 }
+se = { 11, 22, 33 }
+temp2 = se.intersection_update(be)
+temp2 => None
+se => { 22 }
+```
 ##### set判断
+```
+se = { 11, 22, 33 }
+be = { 22 }
+se.isdisjoint(be) => False
+se.issubset(be) => False
+se.isuperset(be) => True
+```
 ##### set合并
+```
+se = { 11, 22, 33 }
+be = { 22 }
+temp1 = se.symmertric_difference(be)
+temp1 => { 11, 33 }
+se = { 11, 22, 33 }
+temp2 = se.symmertric_difference_update(be)
+temp2 => None
+se = { 11, 33 }
+```
 ##### set并集
+```
+se = { 11, 22, 33 }
+be = { 22, 55 }
+temp = se.union(be)
+temp => { 11, 22, 33, 55 }
+```
 ##### set更新
+```
+se = { 11, 22, 33 }
+be = { 22, 55 }
+se.update(be)
+se => { 11, 22, 33, 55 }
+se.update([66, 77])
+se => { 11, 22, 33, 66, 77 }
+```
 ##### set转换
+```
+se = set(range(4))
+li = list(se) => [0, 1, 2, 3]
+tu = tuple(se) => (0, 1, 2, 3) 
+st = str(se) => {0, 1, 2, 3}
+```
