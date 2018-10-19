@@ -6,5 +6,6 @@ git push origin --delete {the_remote_branch}
 ```
 git fetch --all
 git reset --hard origin/master
+or 
 git reset --hard origin/<branch_name>
 ```
