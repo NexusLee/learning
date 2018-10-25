@@ -13,3 +13,7 @@ git reset --hard origin/<branch_name>
 ```
 git remote -v
 ```
+4. #### git 查看本地日志
+```
+git log
+```
