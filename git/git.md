@@ -21,3 +21,10 @@ git log
 ```
 ssh-keygen -t rsa -C "email@company.com" -f ~/.ssh/id_rsa
 ```
+6. #### git 回滚错误的合并
+```
+git revert -m 1 faulty merge
+git checkout master //合并dev操作
+git revert rev3
+git merge dev 
+```
