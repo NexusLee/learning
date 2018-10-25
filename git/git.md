@@ -17,3 +17,7 @@ git remote -v
 ```
 git log
 ```
+5. #### git 生成私钥和公钥
+```
+ssh-keygen -t rsa -C "email@company.com" -f ~/.ssh/id_rsa
+```
