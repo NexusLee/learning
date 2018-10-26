@@ -28,3 +28,7 @@ git checkout master //合并dev操作
 git revert rev3
 git merge dev 
 ```
+7. #### git 恢复未存入暂存区文件
+```
+git checkout -- filename
+```
