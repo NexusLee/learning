@@ -4,7 +4,9 @@ $ curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-mach
   chmod +x /tmp/docker-machine &&
   sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 ```
-
+```
+docker-machine version
+```
 
 ```
 $ cd /etc/bash_completion.d/
