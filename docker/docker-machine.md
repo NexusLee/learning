@@ -7,6 +7,7 @@ $ curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-mach
 ```
 docker-machine version
 ```
+![image](https://github.com/NexusLee/learning/raw/master/docker/Screenshots/1.png)
 
 ```
 $ cd /etc/bash_completion.d/
