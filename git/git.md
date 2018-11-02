@@ -32,3 +32,18 @@ git merge dev
 ```
 git checkout -- filename
 ```
+
+#### 8. git rebase
+```
+git rebase master
+git rebase master topic
+
+          A---B---C topic
+         /
+    D---E---F---G master
+    
+    变成
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+```
