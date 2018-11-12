@@ -17,3 +17,11 @@ this.myDep.changed();
 ```
 (Meteor as any).connection.disconnect();
 ```
+#### 3. 重新连接
+```
+(Meteor as any).connection.reconnect();
+```
+#### 3. 连接状态
+```
+(Meteor as any).connection.status();
+```
