@@ -21,7 +21,7 @@ this.myDep.changed();
 ```
 (Meteor as any).connection.reconnect();
 ```
-#### 3. 连接状态
+#### 4. 连接状态
 ```
 (Meteor as any).connection.status();
 ```
