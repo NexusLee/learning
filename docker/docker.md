@@ -31,3 +31,7 @@ docker start/stop/restart containerid/containername
 docker network create --driver bridge my_net
 ```
 
+### 6. attach 正确退出方式 
+```
+ctrl+p ctrl+q
+```
