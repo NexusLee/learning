@@ -17,11 +17,18 @@ this.myDep.changed();
 ```
 (Meteor as any).connection.disconnect();
 ```
+
 #### 3. 重新连接
 ```
 (Meteor as any).connection.reconnect();
 ```
+
 #### 4. 连接状态
 ```
 (Meteor as any).connection.status();
+```
+
+#### 5. meteor client collection list
+```
+(Meteor as any).connection._mongo_livedata_collections;
 ```
