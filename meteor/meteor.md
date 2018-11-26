@@ -31,4 +31,6 @@ this.myDep.changed();
 #### 5. meteor client collection list
 ```
 (Meteor as any).connection._mongo_livedata_collections;
+or
+(Meteor as any).connection._stores
 ```
