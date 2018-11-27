@@ -28,9 +28,27 @@ this.myDep.changed();
 (Meteor as any).connection.status();
 ```
 
-#### 5. meteor client collection list
+#### 5. meteor 客户端 collection list
 ```
 (Meteor as any).connection._mongo_livedata_collections;
 or
 (Meteor as any).connection._stores
 ```
+#### 6. meteor 创建客户端 collection 并监听服务端
+##### client
+```
+let sharedState = new MongoObservable.Collection('collectionname');
+sharedState.collection.find({}).observe({ //监听一次客服正在输入中
+    "added": function(item) {
+        // your code
+    }
+});
+```
+##### server
+```
+Meteor.publish('Typing', function(obj) {
+    let publication = this;
+    publication.added( 'collectionname', 'time', {date: new Date()} );
+})
+```
+
