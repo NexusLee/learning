@@ -47,3 +47,8 @@ git rebase master topic
                  /
     D---E---F---G master
 ```
+
+#### 9. stash message
+```
+git stash push -m "message"
+```
