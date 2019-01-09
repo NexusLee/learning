@@ -26,3 +26,9 @@ firewall-cmd --reload                                        //重启防火墙
 firewall-cmd --zone=public --remove-port=80/tcp --permanent  //开放端口
 firewall-cmd --reload                                        //重启防火墙
 ```
+#### 5. 清空日志的几种方式
+```
+echo " " > test.log
+> test.log
+cat /dev/null > test.log
+```
