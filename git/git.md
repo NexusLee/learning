@@ -3,6 +3,10 @@
 git checkout -b test
 git push origin test{:name}
 ```
+#### git检出远程分支
+```shell
+git pull origin test{:name}
+```
 
 #### git删除远程分支
 ``` shell
