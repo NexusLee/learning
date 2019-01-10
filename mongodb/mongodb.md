@@ -1,6 +1,6 @@
 ## mongodb
 
-#### 1. 字符串批量替换
+#### 字符串批量替换
 ```
 db.XLChatUser.find({"Icon" : /vbooking/}).forEach(
     function(item){   	
@@ -52,4 +52,9 @@ db.XLChatMessageRecord.find({ $or: [ {"Sender.Icon": /vbooking/}, {"Recver.Icon"
         }
     db.XLChatMessageRecord.save(item);         
 })
+```
+
+#### 查看查询执行状态
+```
+db.test.find()..explain('executionStats')
 ```
