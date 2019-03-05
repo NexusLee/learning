@@ -26,7 +26,9 @@
 | beforeDestory | 组件销毁之前 |
 | destory       | 组件销毁之后 |
 
-![image](https://v1-cn.vuejs.org/images/lifecycle.png)
+<p align="center">
+  <img src='https://v1-cn.vuejs.org/images/lifecycle.png' width='50%' height='50%' alt='vue生命周期' />
+</p>
 
 ### vue 1.x 的语法
 
