@@ -42,12 +42,24 @@ var vm = new Vue({　
 　　watch: { }, //对data和computed的属性进行监听，当属性有变化时自动触发，以方法的形式存在 外部通过$.watch调用
 　　//注意：以上属性和方法，实例内部都通过this调用,外部则通过对应的实例方法访问
 　　//在vue的生命周期过程中，它自身还提供了一系列的钩子函数供我们使用，进行自定义逻辑的注入：　　　
-　　created: function(){ 实例已经创建 }
-　　beforeCompile: function(){ 模块编译之前 }
-　　compiled: function(){ 模块编译之后；即模板占位符被是内容替换}
-　　ready: function(){ 模板插入到文档中了；相当于window.onload }//Vue2.0已改为mounted
+　　created: function(){ 
+      实例已经创建 
+    },
+　　beforeCompile: function(){ 
+      模块编译之前 
+    },
+　　compiled: function(){ 
+      模块编译之后；即模板占位符被是内容替换
+    },
+　　ready: function(){ 
+      模板插入到文档中了；相当于window.onload 
+    }, //Vue2.0已改为mounted
 　　注意： 以上4个方法在对象被实例化后即按顺序执行，以下2个方法需通过事件触发，并通过调用 实例名.$destory() 才执行
-　　beforeDestroy: function(){ 对象销毁之前 }
-　　destroyed: function(){ 对象销毁之后 }
+　　beforeDestroy: function(){ 
+      对象销毁之前 
+    },
+　　destroyed: function(){ 
+      对象销毁之后 
+    }
 });
 ```
