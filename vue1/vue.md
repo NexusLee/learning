@@ -1,4 +1,6 @@
-
+<p align="center">
+  <img src='https://github.com/NexusLee/learning/blob/master/vue1/images/articlex.png' width='100%' height='100%' alt='vue生命周期' />
+</p>
 ``` javascript
 let data = { price: 5, quantity: 2 };
 let target = null;
