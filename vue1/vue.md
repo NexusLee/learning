@@ -1,4 +1,62 @@
 
+``` javascript
+let data = { price: 5, quantity: 2 };
+let target = null;
+
+class Dep { 
+  constructor() {
+    this.subscribers = [];
+  }
+  depend() { //依赖收集
+    if(target && !this.subscribers.includes(target)) {
+      this.subscribers.push(target);
+    }
+  }
+  notify() { //通知
+    this.subscribers.forEach(sub => sub());
+  }
+}
+
+//遍历data属性
+Object.keys(data).forEach(key => {
+  let internalValue = data[key];
+  //每个属性生成单独的依赖实例
+  const dep = new Dep();
+  
+  Object.defineProperty(data, key, { //拦截器
+    get() {
+      dep.denpend(); //添加到订阅数组
+      return internalValue;
+    },
+    set(newVal) {
+      internalValue = newVal;
+      dep.notify(); //通知更新
+    }
+  })
+});
+
+function watcher(func) { //监听函数
+  target = func;
+  target(); //间接调用依赖收集
+  target = null;
+}
+
+watcher(() => {
+  data.total = data.price * data.quantity;
+})
+
+// data.total
+// 10
+// data.price = 20
+// data.total 
+// 40
+// data.quantity = 3
+// 3
+// data.total
+// 60
+```
+
+
 ### 安装
 
 ``` sh
