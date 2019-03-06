@@ -1,4 +1,4 @@
-### 双向绑定原理
+### 1. 双向绑定原理
 
 
 
@@ -66,7 +66,7 @@ watcher(() => {
 ```
 
 
-### 安装
+### 2. 安装
 
 ``` sh
   # 全局安装 vue-cli
@@ -79,7 +79,7 @@ watcher(() => {
   $ npm run dev
 ```
 
-### vue 1.x 的生命周期
+### 3. vue 1.x 的生命周期
 
 | 周期          |      解释      |  
 |---------------|:-------------:|
@@ -97,7 +97,7 @@ watcher(() => {
   <img src='https://v1-cn.vuejs.org/images/lifecycle.png' width='50%' height='50%' alt='vue生命周期' />
 </p>
 
-### vue 1.x 的语法
+### 4. vue 1.x 的语法
 
 ``` javascript
 var vm = new Vue({　
