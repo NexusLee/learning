@@ -1,7 +1,4 @@
-### 1. 双向绑定原理
-
-
-
+### 双向绑定原理
 
 <p align="center">
   <img src='https://github.com/NexusLee/learning/blob/master/vue1/images/articlex.png' width='100%' height='100%' alt='vue生命周期' />
@@ -66,7 +63,7 @@ watcher(() => {
 ```
 
 
-### 2. 安装
+### # 安装
 
 ``` sh
   # 全局安装 vue-cli
@@ -80,21 +77,23 @@ watcher(() => {
 ```
 
 
-### 3. vue 1.x 的语法
+### Vue 实例
 
 ``` javascript
 var vm = new Vue({　//Vue实例
 　　el: "选择器",    //挂载到页面的那个元素里，即确定vue的作用范围  外部可通过vm.$el访问，得到的是一个原生dom元素，可进行对应操作
 　　a: '',          //自定义属性  外部可通过vm.$options访问
-　　data: { },      //实例属性都在这里面，外部通过实例名,即vm.$data调用
+　　data: {
+      a: 1
+    },      //实例属性都在这里面，外部通过实例名,即vm.$data调用
 　　computed: { },  //计算属性，也是实例属性，只是以方法的形式存在，并可以有逻辑运算的属性
 　　method: { },    //实例方法都在这里
 　　watch: { },     //对data和computed的属性进行监听，当属性有变化时自动触发，以方法的形式存在 外部通过$.watch调用
 　　                //注意：以上属性和方法，实例内部都通过this调用,外部则通过对应的实例方法访问
 　　                //在vue的生命周期过程中，它自身还提供了一系列的钩子函数供我们使用，进行自定义逻辑的注入：　　　
-　　created: function(){ 
-      实例已经创建 
-    },
+　　created: function(){         
+        console.log('a is: ' + this.a) // `this` 指向 vm 实例
+    }, //实例已经创建
 　　beforeCompile: function(){ 
       模块编译之前 
     },
@@ -114,7 +113,7 @@ var vm = new Vue({　//Vue实例
 });
 ```
 
-### 4. vue 1.x 的生命周期
+### # vue 的生命周期
 
 | 周期          |      解释      |  
 |---------------|:-------------:|
