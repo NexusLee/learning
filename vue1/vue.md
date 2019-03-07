@@ -113,7 +113,9 @@ var vm = new Vue({　//Vue实例
 });
 ```
 
-#### # vue 的生命周期
+#### #vue 的生命周期
+
+* * *
 
 | 周期          |      解释      |  
 |---------------|:-------------:|
@@ -130,4 +132,41 @@ var vm = new Vue({　//Vue实例
 <p align="center">
   <img src='https://v1-cn.vuejs.org/images/lifecycle.png' width='50%' height='50%' alt='vue生命周期' />
 </p>
+
+#### # 属性与方法
+
+##### 每个 Vue 实例都会代理其 data 对象里所有的属性：
+
+* * *
+
+``` javascript
+  var data = { a: 1 }
+  var vm = new Vue({
+    data: data
+  })
+  vm.a === data.a // -> true
+  // 设置属性也会影响到原始数据
+  vm.a = 2
+  data.a // -> 2
+  // ... 反之亦然
+  data.a = 3
+  vm.a // -> 3
+```
+##### 只有这些被代理的属性是响应的。除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 $，以便与代理的数据属性区分。
+
+``` javascript
+var data = { a: 1 }
+var vm = new Vue({
+  el: '#example',
+  data: data
+})
+vm.$data === data // -> true
+vm.$el === document.getElementById('example') // -> true
+// $watch 是一个实例方法
+vm.$watch('a', function (newVal, oldVal) {
+  // 这个回调将在 `vm.a`  改变后调用
+})
+```
+
+- ### 数据绑定
 
