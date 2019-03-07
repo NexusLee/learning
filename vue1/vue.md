@@ -155,18 +155,60 @@ var vm = new Vue({　//Vue实例
 ##### 只有这些被代理的属性是响应的。除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 $，以便与代理的数据属性区分。
 
 ``` javascript
-var data = { a: 1 }
-var vm = new Vue({
-  el: '#example',
-  data: data
-})
-vm.$data === data // -> true
-vm.$el === document.getElementById('example') // -> true
-// $watch 是一个实例方法
-vm.$watch('a', function (newVal, oldVal) {
-  // 这个回调将在 `vm.a`  改变后调用
-})
+  var data = { a: 1 }
+  var vm = new Vue({
+    el: '#example',
+    data: data
+  })
+  vm.$data === data // -> true
+  vm.$el === document.getElementById('example') // -> true
+  // $watch 是一个实例方法
+  vm.$watch('a', function (newVal, oldVal) {
+    // 这个回调将在 `vm.a`  改变后调用
+  })
 ```
 
 - ### 数据绑定
 
+#### # 文本插值
+
+* * *
+
+数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
+
+``` javascript
+  <span>Message: {{ msg }}</span>
+```
+
+你也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
+``` javascript
+  <span>This will never change: {{* msg }}</span>
+```
+
+#### # HTML 属性
+
+* * *
+
+Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
+``` javascript
+  <div id="item-{{ id }}"></div>
+```
+
+#### # 绑定表达式
+
+* * *
+``` javascript
+  {{ number + 1 }}
+  {{ ok ? 'YES' : 'NO' }}
+  {{ message.split('').reverse().join('') }}
+```
+
+这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含单个表达式，因此下面的语句是无效的：
+``` javascript
+  <!-- 这是一个语句，不是一个表达式： -->
+  {{ var a = 1 }}
+  <!-- 流程控制也不可以，可改用三元表达式 -->
+  {{ if (ok) { return message } }}
+```
+
+#### # 过滤器
