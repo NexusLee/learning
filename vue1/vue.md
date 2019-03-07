@@ -174,13 +174,13 @@ var vm = new Vue({　//Vue实例
 
 * * *
 
-数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
+##### 数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
 
 ``` javascript
   <span>Message: {{ msg }}</span>
 ```
 
-你也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
+##### 你也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
 ``` javascript
   <span>This will never change: {{* msg }}</span>
 ```
@@ -189,7 +189,7 @@ var vm = new Vue({　//Vue实例
 
 * * *
 
-Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
+##### Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
 ``` javascript
   <div id="item-{{ id }}"></div>
 ```
@@ -197,13 +197,14 @@ Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
 #### # 绑定表达式
 
 * * *
+
 ``` javascript
   {{ number + 1 }}
   {{ ok ? 'YES' : 'NO' }}
   {{ message.split('').reverse().join('') }}
 ```
 
-这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含单个表达式，因此下面的语句是无效的：
+##### 这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含单个表达式，因此下面的语句是无效的：
 ``` javascript
   <!-- 这是一个语句，不是一个表达式： -->
   {{ var a = 1 }}
@@ -212,3 +213,58 @@ Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
 ```
 
 #### # 过滤器
+
+* * *
+
+##### Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
+
+``` javascript
+  {{ message | capitalize }}
+```
+
+##### 过滤器可以串联：
+
+``` javascript
+  {{ message | filterA | filterB }}
+```
+
+##### 过滤器也可以接受参数：
+
+``` javascript
+  {{ message | filterA 'arg1' arg2 }}
+```
+
+##### 过滤器函数始终以表达式的值作为第一个参数。带引号的参数视为字符串，而不带引号的参数按表达式计算。这里，字符串 'arg1' 将传给过滤器作为第二个参数，表达式 arg2 的值在计算出来之后作为第三个参数。
+
+##### Vue 自带的过滤器: capitalize、uppercase、lowercase、currency、pluralize、debounce、limitBy、filterBy、orderBy。
+
+``` HTML
+  <div id ="app">
+      {{ date | formatDate }}
+  </div>
+```
+``` javascript
+  var padDate = function(){
+      //在月份、日期、小时等于小于10前补0
+      return value <10 ? '0' + value : value;
+  }
+  var app = new Vue({
+      el:"#app",
+      data:{
+          date:new Date()
+      },
+      filters:{
+          formatDate: function(value) {
+              var date = new Date(value);
+              var year = date.getFullYear();
+              var month = padDate(date.getMonth()+1);
+              var day = padDate(date.getDate());
+              var hours = padDate(date.getHours());
+              var minutes = padDate(date.getMinutes());
+              var seconds = padDate(date.getSeconds());
+              //将整理的数据返回出去
+              return year + "-" + month + "-" + day + " " + hours + ':" + minutes + ":" + seconds;
+          }
+      }
+  })
+```
