@@ -62,6 +62,7 @@ watcher(() => {
 // 60
 ```
 
+* * *
 
 - ### 安装
 
@@ -76,6 +77,7 @@ watcher(() => {
   $ npm run dev
 ```
 
+* * *
 
 - ### Vue 实例
 
@@ -113,8 +115,6 @@ var vm = new Vue({　//Vue实例
 });
 ```
 
-* * *
-
 #### #vue 的生命周期
 
 
@@ -133,8 +133,6 @@ var vm = new Vue({　//Vue实例
 <p align="center">
   <img src='https://v1-cn.vuejs.org/images/lifecycle.png' width='50%' height='50%' alt='vue生命周期' />
 </p>
-
-* * *
 
 #### # 属性与方法
 
@@ -169,6 +167,8 @@ var vm = new Vue({　//Vue实例
   })
 ```
 
+* * *
+
 - ### 数据绑定
 
 #### # 文本插值
@@ -183,8 +183,6 @@ var vm = new Vue({　//Vue实例
 ``` javascript
   <span>This will never change: {{* msg }}</span>
 ```
-
-* * *
 
 #### # HTML 属性
 
@@ -208,8 +206,6 @@ var vm = new Vue({　//Vue实例
   <!-- 流程控制也不可以，可改用三元表达式 -->
   {{ if (ok) { return message } }}
 ```
-
-***
 
 #### # 过滤器
 
@@ -265,7 +261,5 @@ var vm = new Vue({　//Vue实例
       }
   })
 ```
-
-* * *
 
 #### # 过滤器
