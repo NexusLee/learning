@@ -113,9 +113,10 @@ var vm = new Vue({　//Vue实例
 });
 ```
 
+* * *
+
 #### #vue 的生命周期
 
-* * *
 
 | 周期          |      解释      |  
 |---------------|:-------------:|
@@ -133,11 +134,11 @@ var vm = new Vue({　//Vue实例
   <img src='https://v1-cn.vuejs.org/images/lifecycle.png' width='50%' height='50%' alt='vue生命周期' />
 </p>
 
+* * *
+
 #### # 属性与方法
 
 ##### 每个 Vue 实例都会代理其 data 对象里所有的属性：
-
-* * *
 
 ``` javascript
   var data = { a: 1 }
@@ -172,8 +173,6 @@ var vm = new Vue({　//Vue实例
 
 #### # 文本插值
 
-* * *
-
 ##### 数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
 
 ``` javascript
@@ -185,9 +184,9 @@ var vm = new Vue({　//Vue实例
   <span>This will never change: {{* msg }}</span>
 ```
 
-#### # HTML 属性
-
 * * *
+
+#### # HTML 属性
 
 ##### Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
 ``` javascript
@@ -195,8 +194,6 @@ var vm = new Vue({　//Vue实例
 ```
 
 #### # 绑定表达式
-
-* * *
 
 ``` javascript
   {{ number + 1 }}
@@ -212,9 +209,9 @@ var vm = new Vue({　//Vue实例
   {{ if (ok) { return message } }}
 ```
 
-#### # 过滤器
+***
 
-* * *
+#### # 过滤器
 
 ##### Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
 
@@ -268,3 +265,7 @@ var vm = new Vue({　//Vue实例
       }
   })
 ```
+
+* * *
+
+#### # 过滤器
