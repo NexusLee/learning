@@ -262,4 +262,52 @@ var vm = new Vue({　//Vue实例
   })
 ```
 
-#### # 过滤器
+#### # 指令 
+
+> 指令 (Directives) 是特殊的带有前缀 v- 的特性。指令的值限定为绑定表达式，因此上面提到的 JavaScript 表达式及过滤器规则在这里也适用。指令的职责就是当其表达式的值改变时把某些特殊的行为应用到 DOM 上。
+
+``` HTML
+  <p v-if="greeting">Hello!</p>
+```
+
+##### 有些指令可以在其名称后面带一个“参数” (Argument)，中间放一个冒号隔开。例如，v-bind 指令用于响应地更新 HTML 特性：
+
+``` HTML
+  <a v-bind:href="url"></a>
+```
+
+##### 这里 href 是参数，它告诉 v-bind 指令将元素的 href 特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值 href="{{url}}" 获得同样的结果：这样没错，并且实际上在内部特性插值会转为 v-bind 绑定。
+
+##### 另一个例子是 v-on 指令，它用于监听 DOM 事件：
+
+``` HTML
+<a v-on:click="doSomething">
+```
+
+##### 这里参数是被监听的事件的名字
+
+#### # 缩写
+
+> v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
+
+##### v-bind 缩写:
+  
+``` HTML
+  <!-- 完整语法 -->
+  <a v-bind:href="url"></a>
+  <!-- 缩写 -->
+  <a :href="url"></a>
+  <!-- 完整语法 -->
+  <button v-bind:disabled="someDynamicCondition">Button</button>
+  <!-- 缩写 -->
+  <button :disabled="someDynamicCondition">Button</button>
+```
+
+##### v-on 缩写:
+
+``` HTML
+  <!-- 完整语法 -->
+  <a v-on:click="doSomething"></a>
+  <!-- 缩写 -->
+  <a @click="doSomething"></a>
+``` 
