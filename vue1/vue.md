@@ -263,7 +263,7 @@ var vm = new Vue({　//Vue实例
               var minutes = padDate(date.getMinutes());
               var seconds = padDate(date.getSeconds());
               //将整理的数据返回出去
-              return year + "-" + month + "-" + day + " " + hours + ':" + minutes + ":" + seconds;
+              return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
           }
       }
   })
