@@ -73,7 +73,7 @@ watcher(() => {
   $ npm install -g vue-cli
   # 创建一个基于 "webpack" 模板的新项目
   $ vue init webpack#1.0 my-project
-  # 安装依赖，走你
+  # 安装依赖
   $ cd my-project
   $ npm install
   $ npm run dev
