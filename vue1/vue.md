@@ -285,7 +285,7 @@ var vm = new Vue({　//Vue实例
 
 #### # 缩写
 
-> v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
+> ###### v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
 
 - ##### v-bind 缩写:
   
@@ -309,7 +309,10 @@ var vm = new Vue({　//Vue实例
   <a @click="doSomething"></a>
 ``` 
 
-#### # 组件
+组件
+------
+
+#### # 使用组件
 
 - ##### 注册
 ``` HTML  
@@ -338,6 +341,7 @@ var vm = new Vue({　//Vue实例
     <div>A custom component!</div>
   </div>
 ```
+
 - ##### 局部注册
 
 ###### 不需要全局注册每个组件。可以让组件只能用在其它组件内，用实例选项 components 注册：
@@ -353,3 +357,151 @@ var vm = new Vue({　//Vue实例
   })
 
 ```
+
+- ##### 注册语法糖
+
+###### 为了让事件更简单，可以直接传入选项对象而不是构造器给 `Vue.component()` 和 `component` 选项。Vue.js 在背后自动调用 `Vue.extend()`：
+
+``` javascript
+  // 在一个步骤中扩展与注册
+  Vue.component('my-component', {
+    template: '<div>A custom component!</div>'
+  })
+  // 局部注册也可以这么做
+  var Parent = Vue.extend({
+    components: {
+      'my-component': {
+        template: '<div>A custom component!</div>'
+      }
+    }
+  })
+```
+
+#### # Props
+
+- ##### 使用Props传递数据
+
+###### 组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 `props` 把数据传给子组件。
+
+###### “prop” 是组件数据的一个字段，期望从父组件传下来。子组件需要显式地用 `props` 选项 声明 `props`：
+
+``` javascript
+  Vue.component('child', {
+    // 声明 props
+    props: ['msg'],
+    // prop 可以用在模板内
+    // 可以用 `this.msg` 设置
+    template: '<span>{{ msg }}</span>'
+  })
+
+```
+###### 然后向它传入一个普通字符串：
+
+``` HTML
+  <child msg="hello!"></child>
+```
+
+- #####  动态 Props 
+
+###### 类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 绑定动态 Props 到父组件的数据。每当父组件的数据变化时，也会传导给子组件：
+
+``` HTML
+  <div>
+    <input v-model="parentMsg">
+    <br>
+    <child :my-message="parentMsg"></child>
+  </div>
+```
+
+- #####  Prop 绑定类型
+
+###### prop 默认是单向绑定：当父组件的属性变化时，将传导给子组件，但是反过来不会。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。不过，也可以使用 .sync 或 .once 绑定修饰符显式地强制双向或单次绑定：
+
+``` HTML
+  <!-- 默认为单向绑定 -->
+  <child :msg="parentMsg"></child>
+  <!-- 双向绑定 -->
+  <child :msg.sync="parentMsg"></child>
+  <!-- 单次绑定 -->
+  <child :msg.once="parentMsg"></child>
+```
+
+> ###### 注意如果 prop 是一个对象或数组，是按引用传递。在子组件内修改它会影响父组件的状态，不管是使用哪种绑定类型。
+
+- #####  Prop 验证
+
+###### 组件可以为 props 指定验证要求。当组件给其他人使用时这很有用，因为这些验证要求构成了组件的 API，确保其他人正确地使用组件。
+
+``` javascript
+  Vue.component('example', {
+  props: {
+    // 基础类型检测 （`null` 意思是任何类型都可以）
+    propA: Number,
+    // 多种类型 (1.0.21+)
+    propM: [String, Number],
+    // 必需且是字符串
+    propB: {
+      type: String,
+      required: true
+    },
+    // 数字，有默认值
+    propC: {
+      type: Number,
+      default: 100
+    },
+    // 对象/数组的默认值应当由一个函数返回
+    propD: {
+      type: Object,
+      default: function () {
+        return { msg: 'hello' }
+      }
+    },
+    // 指定这个 prop 为双向绑定
+    // 如果绑定类型不对将抛出一条警告
+    propE: {
+      twoWay: true
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {
+        return value > 10
+      }
+    },
+    // 转换函数（1.0.12 新增）
+    // 在设置值之前转换值
+    propG: {
+      coerce: function (val) {
+        return val + '' // 将值转换为字符串
+      }
+    },
+    propH: {
+      coerce: function (val) {
+        return JSON.parse(val) // 将 JSON 字符串转换为对象
+      }
+    }
+  }
+})
+```
+###### `type` 可以是下面原生构造器：
+  - ###### String
+  - ###### Number
+  - ###### Boolean
+  - ###### Function
+  - ###### Object
+  - ###### Array
+  
+###### 当 prop 验证失败了，Vue 将拒绝在子组件上设置此值，如果使用的是开发版本会抛出一条警告。
+
+#### # 父子组件通信
+
+- #####  父链
+
+###### 子组件可以用 `this.$parent` 访问它的父组件。根实例的后代可以用 `this.$root` 访问它。父组件有一个数组 `this.$children`，包含它所有的子元素。
+
+###### 尽管可以访问父链上任意的实例，不过子组件应当避免直接依赖父组件的数据，尽量显式地使用 `props` 传递数据。另外，在子组件中修改父组件的状态是非常糟糕的做法，因为：
+
+     1. 这让父组件与子组件紧密地耦合；
+
+     2. 只看父组件，很难理解父组件的状态。因为它可能被任意子组件修改！理想情况下，只有组件自己能修改它的状态。
+     
+- #####  自定义事件
