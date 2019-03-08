@@ -265,7 +265,7 @@ Vue 实例
 
 #### # 指令 
 
-> 指令 (Directives) 是特殊的带有前缀 v- 的特性。指令的值限定为绑定表达式，因此上面提到的 JavaScript 表达式及过滤器规则在这里也适用。指令的职责就是当其表达式的值改变时把某些特殊的行为应用到 DOM 上。
+  > ###### 指令 (Directives) 是特殊的带有前缀 v- 的特性。指令的值限定为绑定表达式，因此上面提到的 JavaScript 表达式及过滤器规则在这里也适用。指令的职责就是当其表达式的值改变时把某些特殊的行为应用到 DOM 上。
 
   ``` HTML
     <p v-if="greeting">Hello!</p>
@@ -289,7 +289,7 @@ Vue 实例
 
 #### # 缩写
 
-> ###### v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
+  > ###### v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
 
 - ##### v-bind 缩写:
   
@@ -431,7 +431,7 @@ Vue 实例
     <child :msg.once="parentMsg"></child>
   ```
 
-> ###### 注意如果 prop 是一个对象或数组，是按引用传递。在子组件内修改它会影响父组件的状态，不管是使用哪种绑定类型。
+  > ###### 注意如果 prop 是一个对象或数组，是按引用传递。在子组件内修改它会影响父组件的状态，不管是使用哪种绑定类型。
 
 - #####  Prop 验证
 
@@ -578,5 +578,99 @@ Vue 实例
   ```
   ###### 这样就很清楚了：当子组件触发了 `"child-msg"` 事件，父组件的 `handleIt` 方法将被调用。所有影响父组件状态的代码放到父组件的 `handleIt` 方法中；子组件只关注触发事件。
   
+#### # 使用-Slot-分发内容  
   
+- ##### 编译作用域
   
+  ###### 在深入内容分发 API 之前，我们先明确内容的编译作用域。
+  
+  ``` HTML
+    <child-component>
+      {{ msg }}
+    </child-component>
+  ```
+  ###### `msg` 应该绑定到父组件的数据，还是绑定到子组件的数据？答案是父组件。组件作用域简单地说是：
+  
+    > ###### 父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译
+
+  ###### 一个常见错误是试图在父组件模板内将一个指令绑定到子组件的属性/方法：
+  
+  ``` HTML
+    <!-- 无效 -->
+    <child-component v-show="someChildProperty"></child-component>
+  ```
+  ###### 假定 `someChildProperty` 是子组件的属性，上例不会如预期那样工作。父组件模板不应该知道子组件的状态。
+  
+  ######如果要绑定子组件内的指令到一个组件的根节点，应当在它的模板内这么做：
+
+  ```
+    Vue.component('child-component', {
+      // 有效，因为是在正确的作用域内
+      template: '<div v-show="someChildProperty">Child</div>',
+      data: function () {
+        return {
+          someChildProperty: true
+        }
+      }
+    })
+  
+  ```
+
+  - ##### 单个 Slot
+  
+    ###### 父组件的内容将被抛弃，除非子组件模板包含 `<slot>`。如果子组件模板只有一个没有特性的 `slot`，父组件的整个内容将插到 `slot` 所在的地方并替换它。
+    
+    ###### 假定 my-component 组件有下面模板：
+    
+    ``` HTML
+      <div>
+        <h1>This is my component!</h1>
+        <slot>
+          如果没有分发内容则显示我。
+        </slot>
+      </div>
+    ```
+    
+    ###### 父组件模板：
+
+    ``` HTML
+      <my-component>
+        <p>This is some original content</p>
+        <p>This is some more original content</p>
+      </my-component>
+    ```
+    
+    ###### 渲染结果：
+
+    ``` HTML
+      <div>
+        <h1>This is my component!</h1>
+        <p>This is some original content</p>
+        <p>This is some more original content</p>
+      </div>
+    ```
+    
+  - ##### 具名 Slot
+  
+    ###### `<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 `slot` 可以有不同的名字。具名 `slot` 将匹配内容片段中有对应 `slot` 特性的元素。
+    ###### 仍然可以有一个匿名 `slot`，它是默认 `slot`，作为找不到匹配的内容片段的回退插槽。如果没有默认的 `slot`，这些找不到匹配的内容片段将被抛弃。
+
+    ###### 例如，假定我们有一个 `multi-insertion` 组件，它的模板为：
+    
+    ``` HTML
+      <div>
+        <slot name="one"></slot>
+        <slot></slot>
+        <slot name="two"></slot>
+      </div>  
+    ```
+    
+    ###### 父组件模板：
+    
+    ``` HTML
+      <multi-insertion>
+        <p slot="one">One</p>
+        <p slot="two">Two</p>
+        <p>Default A</p>
+      </multi-insertion>
+    ```
