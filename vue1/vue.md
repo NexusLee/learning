@@ -77,8 +77,6 @@ watcher(() => {
   $ npm run dev
 ```
 
-* * *
-
 Vue 实例
 ------
 
@@ -118,7 +116,6 @@ var vm = new Vue({　//Vue实例
 
 #### #vue 的生命周期
 
-
 | 周期          |      解释      |  
 |---------------|:-------------:|
 | init          | 组件刚刚被创建，但是Data、method等属性还没有被计算 |
@@ -152,7 +149,7 @@ var vm = new Vue({　//Vue实例
   data.a = 3
   vm.a // -> 3
 ```
-##### 只有这些被代理的属性是响应的。除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 $，以便与代理的数据属性区分。
+###### 只有这些被代理的属性是响应的。除了这些数据属性，Vue 实例暴露了一些有用的实例属性与方法。这些属性与方法都有前缀 $，以便与代理的数据属性区分。
 
 ``` javascript
   var data = { a: 1 }
@@ -168,27 +165,25 @@ var vm = new Vue({　//Vue实例
   })
 ```
 
-* * *
-
 数据绑定
 ------
 
 #### # 文本插值
 
-##### 数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
+###### 数据绑定最基础的形式是文本插值，使用 “Mustache” 语法（双大括号）：
 
 ``` javascript
   <span>Message: {{ msg }}</span>
 ```
 
-##### 你也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
+###### 你也可以只处理单次插值，今后的数据变化就不会再引起插值更新了：
 ``` javascript
   <span>This will never change: {{* msg }}</span>
 ```
 
 #### # HTML 属性
 
-##### Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
+###### Mustache 标签也可以用在 HTML 属性 (Attributes) 内：
 ``` javascript
   <div id="item-{{ id }}"></div>
 ```
@@ -201,7 +196,7 @@ var vm = new Vue({　//Vue实例
   {{ message.split('').reverse().join('') }}
 ```
 
-##### 这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含单个表达式，因此下面的语句是无效的：
+###### 这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含单个表达式，因此下面的语句是无效的：
 ``` javascript
   <!-- 这是一个语句，不是一个表达式： -->
   {{ var a = 1 }}
@@ -211,27 +206,27 @@ var vm = new Vue({　//Vue实例
 
 #### # 过滤器
 
-##### Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
+###### Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
 
 ``` javascript
   {{ message | capitalize }}
 ```
 
-##### 过滤器可以串联：
+###### 过滤器可以串联：
 
 ``` javascript
   {{ message | filterA | filterB }}
 ```
 
-##### 过滤器也可以接受参数：
+###### 过滤器也可以接受参数：
 
 ``` javascript
   {{ message | filterA 'arg1' arg2 }}
 ```
 
-##### 过滤器函数始终以表达式的值作为第一个参数。带引号的参数视为字符串，而不带引号的参数按表达式计算。这里，字符串 'arg1' 将传给过滤器作为第二个参数，表达式 arg2 的值在计算出来之后作为第三个参数。
+###### 过滤器函数始终以表达式的值作为第一个参数。带引号的参数视为字符串，而不带引号的参数按表达式计算。这里，字符串 'arg1' 将传给过滤器作为第二个参数，表达式 arg2 的值在计算出来之后作为第三个参数。
 
-##### Vue 自带的过滤器: capitalize、uppercase、lowercase、currency、pluralize、debounce、limitBy、filterBy、orderBy。
+###### Vue 自带的过滤器: capitalize、uppercase、lowercase、currency、pluralize、debounce、limitBy、filterBy、orderBy。
 
 ``` HTML
   <div id ="app">
@@ -272,27 +267,27 @@ var vm = new Vue({　//Vue实例
   <p v-if="greeting">Hello!</p>
 ```
 
-##### 有些指令可以在其名称后面带一个“参数” (Argument)，中间放一个冒号隔开。例如，v-bind 指令用于响应地更新 HTML 特性：
+###### 有些指令可以在其名称后面带一个“参数” (Argument)，中间放一个冒号隔开。例如，v-bind 指令用于响应地更新 HTML 特性：
 
 ``` HTML
   <a v-bind:href="url"></a>
 ```
 
-##### 这里 href 是参数，它告诉 v-bind 指令将元素的 href 特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值 href="{{url}}" 获得同样的结果：这样没错，并且实际上在内部特性插值会转为 v-bind 绑定。
+###### 这里 href 是参数，它告诉 v-bind 指令将元素的 href 特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值 href="{{url}}" 获得同样的结果：这样没错，并且实际上在内部特性插值会转为 v-bind 绑定。
 
-##### 另一个例子是 v-on 指令，它用于监听 DOM 事件：
+###### 另一个例子是 v-on 指令，它用于监听 DOM 事件：
 
 ``` HTML
 <a v-on:click="doSomething">
 ```
 
-##### 这里参数是被监听的事件的名字
+###### 这里参数是被监听的事件的名字
 
 #### # 缩写
 
 > v- 前缀是一种标识模板中特定的 Vue 特性的视觉暗示。当你需要在一些现有的 HTML 代码中添加动态行为时，这些前缀可以起到很好的区分效果。但你在使用一些常用指令的时候，你会感觉一直这么写实在是啰嗦。而且在构建单页应用（SPA ）时，Vue.js 会管理所有的模板，此时 v- 前缀也没那么重要了。因此Vue.js 为两个最常用的指令 v-bind 和 v-on 提供特别的缩写：
 
-##### v-bind 缩写:
+- ##### v-bind 缩写:
   
 ``` HTML
   <!-- 完整语法 -->
@@ -305,7 +300,7 @@ var vm = new Vue({　//Vue实例
   <button :disabled="someDynamicCondition">Button</button>
 ```
 
-##### v-on 缩写:
+- ##### v-on 缩写:
 
 ``` HTML
   <!-- 完整语法 -->
@@ -316,6 +311,7 @@ var vm = new Vue({　//Vue实例
 
 #### # 组件
 
+- ##### 注册
 ``` HTML  
   <div id="example">
     <my-component></my-component>
@@ -327,7 +323,7 @@ var vm = new Vue({　//Vue实例
   var MyComponent = Vue.extend({
     template: '<div>A custom component!</div>'
   })
-  // Vue.component(tag, constructor) 注册, 把这个构造器用作组件
+  // 全局注册组件, 把这个构造器用作组件
   Vue.component('my-component', MyComponent)
   // 创建根实例
   new Vue({
@@ -335,11 +331,25 @@ var vm = new Vue({　//Vue实例
   })
 ```
 
-##### 渲染为：
+###### 渲染为：
 
 ``` HTML
   <div id="example">
     <div>A custom component!</div>
   </div>
 ```
+- ##### 局部注册
 
+###### 不需要全局注册每个组件。可以让组件只能用在其它组件内，用实例选项 components 注册：
+
+``` javascript
+  var Child = Vue.extend({ /* ... */ })
+  var Parent = Vue.extend({
+    template: '...',
+    components: {
+      // <my-component> 只能用在父组件模板内
+      'my-component': Child
+    }
+  })
+
+```
