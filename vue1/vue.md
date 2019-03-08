@@ -522,3 +522,61 @@ Vue 实例
       使用 `$dispatch()` 派发事件，事件沿着父链冒泡；
 
       使用 `$broadcast()` 广播事件，事件向下传导给所有的后代。
+      
+      ``` HTML
+      <!-- 子组件模板 -->
+        <template id="child-template">
+          <input v-model="msg">
+          <button v-on:click="notify">Dispatch Event</button>
+        </template>
+        <!-- 父组件模板 -->
+        <div id="events-example">
+          <p>Messages: {{ messages | json }}</p>
+          <child></child>
+        </div>
+      ```
+      ```
+        // 注册子组件
+        // 将当前消息派发出去
+        Vue.component('child', {
+          template: '#child-template',
+          data: function () {
+            return { msg: 'hello' }
+          },
+          methods: {
+            notify: function () {
+              if (this.msg.trim()) {
+                this.$dispatch('child-msg', this.msg)
+                this.msg = ''
+              }
+            }
+          }
+        })
+        // 初始化父组件
+        // 将收到消息时将事件推入一个数组
+        var parent = new Vue({
+          el: '#events-example',
+          data: {
+            messages: []
+          },
+          // 在创建实例时 `events` 选项简单地调用 `$on`
+          events: {
+            'child-msg': function (msg) {
+              // 事件回调内的 `this` 自动绑定到注册它的实例上
+              this.messages.push(msg)
+            }
+          }
+        })
+      ```
+      
+- #####  使用-v-on-绑定自定义事件
+
+  ###### 上例非常好，不过从父组件的代码中不能直观的看到 `"child-msg"` 事件来自哪里。如果我们在模板中子组件用到的地方声明事件处理器会更好。为此子组件可以用 `v-on` 监听自定义事件：
+  
+  ``` HTML
+    <child v-on:child-msg="handleIt"></child>
+  ```
+  ###### 这样就很清楚了：当子组件触发了 `"child-msg"` 事件，父组件的 `handleIt` 方法将被调用。所有影响父组件状态的代码放到父组件的 `handleIt` 方法中；子组件只关注触发事件。
+  
+  
+  
