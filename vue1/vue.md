@@ -616,61 +616,88 @@ Vue 实例
   
   ```
 
-  - ##### 单个 Slot
+- ##### 单个 Slot
   
-    ###### 父组件的内容将被抛弃，除非子组件模板包含 `<slot>`。如果子组件模板只有一个没有特性的 `slot`，父组件的整个内容将插到 `slot` 所在的地方并替换它。
-    
-    ###### 假定 my-component 组件有下面模板：
-    
-    ``` HTML
-      <div>
-        <h1>This is my component!</h1>
-        <slot>
-          如果没有分发内容则显示我。
-        </slot>
-      </div>
-    ```
-    
-    ###### 父组件模板：
+  ###### 父组件的内容将被抛弃，除非子组件模板包含 `<slot>`。如果子组件模板只有一个没有特性的 `slot`，父组件的整个内容将插到 `slot` 所在的地方并替换它。
 
-    ``` HTML
-      <my-component>
-        <p>This is some original content</p>
-        <p>This is some more original content</p>
+  ###### 假定 my-component 组件有下面模板：
+
+  ``` HTML
+    <div>
+      <h1>This is my component!</h1>
+      <slot>
+        如果没有分发内容则显示我。
+      </slot>
+    </div>
+  ```
+
+  ###### 父组件模板：
+
+  ``` HTML
+    <my-component>
+      <p>This is some original content</p>
+      <p>This is some more original content</p>
+    </my-component>
+  ```
+
+  ###### 渲染结果：
+
+  ``` HTML
+    <div>
+      <h1>This is my component!</h1>
+      <p>This is some original content</p>
+      <p>This is some more original content</p>
+    </div>
+  ```
+    
+- ##### 具名 Slot
+  
+  ###### `<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 `slot` 可以有不同的名字。具名 `slot` 将匹配内容片段中有对应 `slot` 特性的元素。
+  ###### 仍然可以有一个匿名 `slot`，它是默认 `slot`，作为找不到匹配的内容片段的回退插槽。如果没有默认的 `slot`，这些找不到匹配的内容片段将被抛弃。
+
+  ###### 例如，假定我们有一个 `multi-insertion` 组件，它的模板为：
+
+  ``` HTML
+    <div>
+      <slot name="one"></slot>
+      <slot></slot>
+      <slot name="two"></slot>
+    </div>  
+  ```
+
+  ###### 父组件模板：
+
+  ``` HTML
+    <multi-insertion>
+      <p slot="one">One</p>
+      <p slot="two">Two</p>
+      <p>Default A</p>
+    </multi-insertion>
+  ```
+    
+#### # 杂项
+  
+  - ##### 编写可复用组件
+    
+    ###### 在编写组件时，记住是否要复用组件有好处。一次性组件跟其它组件紧密耦合没关系，但是可复用组件应当定义一个清晰的公开接口
+    ###### Vue.js 组件 API 来自三部分——prop，事件和 slot： 
+        
+        1. prop 允许外部环境传递数据给组件；
+
+        2. 事件 允许组件触发外部环境的 action；
+
+        3. slot 允许外部环境插入内容到组件的视图结构内。
+        
+    ###### 使用 `v-bind` 和 `v-on` 的简写语法，模板的缩进清楚且简洁：
+    
+    ```
+      <my-component
+        :foo="baz"
+        :bar="qux"
+        @event-a="doThis"
+        @event-b="doThat">
+        <!-- content -->
+        <img slot="icon" src="...">
+        <p slot="main-text">Hello!</p>
       </my-component>
-    ```
-    
-    ###### 渲染结果：
-
-    ``` HTML
-      <div>
-        <h1>This is my component!</h1>
-        <p>This is some original content</p>
-        <p>This is some more original content</p>
-      </div>
-    ```
-    
-  - ##### 具名 Slot
-  
-    ###### `<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 `slot` 可以有不同的名字。具名 `slot` 将匹配内容片段中有对应 `slot` 特性的元素。
-    ###### 仍然可以有一个匿名 `slot`，它是默认 `slot`，作为找不到匹配的内容片段的回退插槽。如果没有默认的 `slot`，这些找不到匹配的内容片段将被抛弃。
-
-    ###### 例如，假定我们有一个 `multi-insertion` 组件，它的模板为：
-    
-    ``` HTML
-      <div>
-        <slot name="one"></slot>
-        <slot></slot>
-        <slot name="two"></slot>
-      </div>  
-    ```
-    
-    ###### 父组件模板：
-    
-    ``` HTML
-      <multi-insertion>
-        <p slot="one">One</p>
-        <p slot="two">Two</p>
-        <p>Default A</p>
-      </multi-insertion>
     ```
