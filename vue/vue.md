@@ -78,8 +78,8 @@
     $ npm run dev
   ```
   
-<p align="center">
-  <img src='https://github.com/NexusLee/learning/blob/master/vue/images/catalog.png' width='100%' height='100%' alt='vue生命周期' />
+<p align="left">
+  <img src='https://github.com/NexusLee/learning/blob/master/vue/images/catalog.png' alt='目录' />
 </p>
 
 Vue 实例
