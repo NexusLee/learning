@@ -3,7 +3,7 @@
 ------
 
 <p align="center">
-  <img src='https://github.com/NexusLee/learning/blob/master/vue1/images/articlex.png' width='100%' height='100%' alt='vue生命周期' />
+  <img src='https://github.com/NexusLee/learning/blob/master/vue/images/articlex.png' width='100%' height='100%' alt='vue生命周期' />
 </p>
 
 
@@ -77,6 +77,10 @@
     $ npm install
     $ npm run dev
   ```
+  
+<p align="left">
+  <img src='https://github.com/NexusLee/learning/blob/master/vue/images/catalog.png' alt='目录' />
+</p>
 
 Vue 实例
 ------
