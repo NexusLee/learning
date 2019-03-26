@@ -14,14 +14,15 @@ def __new__(cls,
   training_chief_hooks=None, 
   training_hooks=None, 
   scaffold=None): 
-
+  
+  '''
   该类定义了一个具体的模型对象，但是参数之间互相有约束 
   mode: 定义了模型的类型，也就是上文ModeKeys类对象，依赖于不同的model对取值会有所要求： 
   如果mode==ModeKeys.TRAIN，此时模型类型为训练，则必须loss和train_op参数 
   如果mode==ModeKeys.EVAL，此时模型类型为评估，则必须loss参数 
   如果mode==ModeKeys.PREDICT`，此时模型类型为预测，则必须predictions 
   EstimatorSpec一般会配合Estimator类使用。
-
+  '''
 tf.estimator.Estimator(
   model_fn, #模型函数
   model_dir=None, #存储目录
