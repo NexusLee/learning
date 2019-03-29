@@ -35,3 +35,8 @@ docker network create --driver bridge my_net
 ```
 ctrl+p ctrl+q
 ```
+
+### 7. 容器间使用相同网络
+```
+--network=container:japronto
+```
