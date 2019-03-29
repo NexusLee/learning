@@ -38,5 +38,6 @@ ctrl+p ctrl+q
 
 ### 7. 容器间使用相同网络
 ```
---network=container:japronto
+container1: --name=japronto
+container2: --network=container:japronto
 ```
