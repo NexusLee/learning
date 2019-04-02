@@ -59,7 +59,7 @@ server_names_hash_max_size 2048;
 ### 优化worker服务进程数
 
 worker进程数最开始的设置可以等于CPU的核数，高流量高并发场合也可以考虑将进程数提高至CPU核数*2
-``` unix
+``` 
 #查看CPU总颗数：
 [root@nginx conf]# grep 'physical id' /proc/cpuinfo|sort|uniq|wc -l
 1
@@ -67,7 +67,7 @@ worker进程数最开始的设置可以等于CPU的核数，高流量高并发�
 [root@nginx conf]# grep processor /proc/cpuinfo |wc -l
 4
 ```
-```
+``` nginx
 #CPU的总核数4
 worker_processes  4;
 ```
