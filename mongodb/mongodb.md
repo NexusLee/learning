@@ -58,3 +58,25 @@ db.XLChatMessageRecord.find({ $or: [ {"Sender.Icon": /vbooking/}, {"Recver.Icon"
 ```
 db.test.find()..explain('executionStats')
 ```
+
+#### 按月份group
+```
+db.XLChatMessageRecord.aggregate([
+{
+    $match: {TextMessage: /微信/  }
+},
+{
+	$group : {
+	    _id : {
+	   	    RoomId: '$RoomId', TextMessage: '$TextMessage', CreateTime: '$CreateTime'
+	   	}
+    }
+},
+ { 
+    $group: { 
+        _id: {$substr: ['$_id.CreateTime', 0, 7]}, 
+        count: { $sum: 1 } 
+    } 
+ }
+])
+```
