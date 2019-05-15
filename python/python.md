@@ -124,3 +124,7 @@ li = list(se) => [0, 1, 2, 3]
 tu = tuple(se) => (0, 1, 2, 3) 
 st = str(se) => {0, 1, 2, 3}
 ```
+
+##### python 本地安装
+
+python setup.py install
