@@ -33,7 +33,12 @@ echo " " > test.log
 cat /dev/null > test.log
 ```
 
-#### 5. 发送1次 icmp echo_request
+#### 6. 发送1次 icmp echo_request
 ```shell
 ping -c 1
+```
+
+#### 7. 查看路由表
+```shell
+ip r
 ```
