@@ -32,3 +32,8 @@ echo " " > test.log
 > test.log
 cat /dev/null > test.log
 ```
+
+#### 5. 发送1次 icmp echo_request
+```shell
+ping -c 1
+```
