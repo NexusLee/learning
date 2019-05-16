@@ -41,3 +41,34 @@ ctrl+p ctrl+q
 container1: --name=japronto
 container2: --network=container:japronto
 ```
+
+### 8. namespace 
+
+```
+Mount, UTS, IPC, PID, Network 和 User
+```
+
+### 9. docker 网络 
+
+```
+none, host 和 bridge
+```
+
+### 10. user-defined 网络
+
+```
+bridge, overlay 和 macvlan
+```
+
+### 11. 容器间通信
+
+```
+IP 通信, Docker DNS Server 和 joined 容器
+
+```
+
+### 12. 查看网络
+
+```
+docker network inspect
+```
