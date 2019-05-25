@@ -70,3 +70,8 @@ git remote add upstream git@github.com:xxx/xxx.git
 git fetch upstream
 git merge upstream/master
 ```
+
+#### git 关联远程分支
+```shell
+git branch --set-upstream-to=origin/<branch> release
+```
