@@ -72,3 +72,9 @@ IP 通信, Docker DNS Server 和 joined 容器
 ```
 docker network inspect
 ```
+
+### 13. docker存储
+
+   - storage driver 管理的镜像层和容器层
+
+   - Data Volume
