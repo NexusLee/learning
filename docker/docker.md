@@ -78,3 +78,7 @@ docker network inspect
    - storage driver 管理的镜像层和容器层
 
    - Data Volume
+   
+    1. bind mount
+    
+    2. docker managed volume
