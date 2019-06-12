@@ -81,4 +81,6 @@ docker network inspect
    
     1. bind mount
     
+    -v <host path>:<container path>: auth
+    
     2. docker managed volume
