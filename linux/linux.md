@@ -48,7 +48,12 @@ ip r
 lsof -i:8080
 ```
 
-#### 8. 根据PID查看进程信息
+#### 9. 根据PID查看进程信息
 ```shell
 ll /proc/pid
+```
+
+#### 10. kcptun 重启
+```shell
+supervisorctl restart kcptun
 ```
