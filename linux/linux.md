@@ -57,3 +57,9 @@ ll /proc/pid
 ```shell
 supervisorctl restart kcptun
 ```
+
+#### 11. 查看memcache信息
+```shell
+telnet 127.0.0.1 11211
+stats
+```
