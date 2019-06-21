@@ -63,3 +63,8 @@ supervisorctl restart kcptun
 telnet 127.0.0.1 11211
 stats
 ```
+
+#### 12. 设置权限
+```shell
+chown -R user:group file
+```
