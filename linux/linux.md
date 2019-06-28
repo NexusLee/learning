@@ -62,6 +62,7 @@ supervisorctl restart kcptun
 ```shell
 telnet 127.0.0.1 11211
 stats
+ctrl+], 按q结束进程。
 ```
 
 #### 12. 设置权限
