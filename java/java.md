@@ -19,3 +19,5 @@ fi
 
 catalina.sh jpda start
 ```
+
+![avatar](https://github.com/NexusLee/learning/blob/master/java/remotedebug.png)
