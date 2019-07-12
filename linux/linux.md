@@ -69,3 +69,8 @@ ctrl+], 按q结束进程。
 ```shell
 chown -R user:group file
 ```
+
+#### 13. 快速查找日志文件内容
+```shell
+grep '日志' *
+```
