@@ -70,7 +70,7 @@ ctrl+], 按q结束进程。
 chown -R user:group file
 ```
 
-#### 13. 快速查找日志文件内容
+#### 13. 快速查找日志文件内容(less、vim均可)
 ```shell
 grep '日志' *
 ```
