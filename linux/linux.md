@@ -75,4 +75,32 @@ chown -R user:group file
 grep -n '日志' *
 
 head -n k file | tail -n m
+
+
+$ seq 1 100000000 > file
+
+$ time (head -50000000 file | tail -10) > /dev/null
+real    0m0.694s
+user    0m0.830s
+sys     0m0.333s
+
+$ time (sed -n '49999991,50000000p' file) > /dev/null
+real    0m6.018s
+user    0m5.863s
+sys     0m0.160s
+
+$ time (sed -n '50000000q;49999991,50000000p' file) > /dev/null
+real    0m3.197s
+user    0m3.153s
+sys     0m0.043s
+
+$ time (awk 'NR>=49999991 && NR<=50000000' file) > /dev/null
+real    0m12.665s
+user    0m12.543s
+sys     0m0.123s
+
+$ time (awk 'NR>=49999991 && NR<=50000000{print} NR==50000001{exit}' file)
+real    0m9.104s
+user    0m9.010s
+sys     0m0.100s
 ```
