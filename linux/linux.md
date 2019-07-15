@@ -76,8 +76,7 @@ grep -n '日志' *
 
 head -n k file | tail -n m
 
-
-$ seq 1 100000000 > file
+$ sed -n '/2019-07-09 07:10:09/,/2019-07-09 07:10:10/p' server.out2019-07-09.log > temp.log
 
 $ time (head -50000000 file | tail -10) > /dev/null
 real    0m0.694s
