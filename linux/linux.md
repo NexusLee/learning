@@ -72,13 +72,13 @@ chown -R user:group file
 
 #### 13. 快速查找大日志文件内容(less、vim均可)
 ```shell
-grep -n '日志' *
+grep -n '日志' * （日志过大 grep: memory exhausted）
 
-切割出日志 grep -n '2019-07-09 07:10:09' log.out > temp.out
+切割出日志 grep -n '2019-07-09 07:10:09' log.out > temp.out （日志过大 grep: memory exhausted）
 
 head -n k file | tail -n m
 
-$ sed -n '/2019-07-09 07:10:09/,/2019-07-09 07:10:10/p' server.out2019-07-09.log > temp.log
+$ sed -n '/2019-07-09 07:10:09/,/2019-07-09 07:10:10/p' server.out2019-07-09.log > temp.log （日志过大 sed: couldn't re-allocate memory）
 
 $ time (head -50000000 file | tail -10) > /dev/null
 real    0m0.694s
