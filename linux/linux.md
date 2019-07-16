@@ -74,6 +74,8 @@ chown -R user:group file
 ```shell
 grep -n '日志' *
 
+切割出日志 grep -n '2019-07-09 07:10:09' log.out > temp.out
+
 head -n k file | tail -n m
 
 $ sed -n '/2019-07-09 07:10:09/,/2019-07-09 07:10:10/p' server.out2019-07-09.log > temp.log
