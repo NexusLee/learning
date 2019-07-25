@@ -105,3 +105,22 @@ real    0m9.104s
 user    0m9.010s
 sys     0m0.100s
 ```
+
+#### 12. 查看文件大小(sparse file)
+
+```shell
+$ ls -l file
+-rw-r--r--  1 myself wheel  536870912 Apr  8 11:44 file
+
+$ ls -lh file
+-rw-r--r--  1 myself wheel   512M Apr  8 11:44 file
+
+$ du -h file //实际大小
+24K    file
+
+$ du -B 1 file
+24576   file
+
+$ ls -s --block-size=1 file
+24576 file
+```shell
