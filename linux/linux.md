@@ -124,3 +124,9 @@ $ du -B 1 file
 $ ls -s --block-size=1 file
 24576 file
 ```shell
+
+#### 13. 检测https
+
+```shell
+curl -k -3 http://localhost:8443 | od -A n -t x1
+```
