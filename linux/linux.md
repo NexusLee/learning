@@ -130,3 +130,9 @@ $ ls -s --block-size=1 file
 ```shell
 curl -k -3 http://localhost:8443 | od -A n -t x1
 ```
+
+#### 13. 查看tcp端口连接数
+
+```shell
+netstat -nat|grep -i "17001"|wc -l
+```
