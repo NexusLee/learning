@@ -106,32 +106,32 @@ user    0m9.010s
 sys     0m0.100s
 ```
 
-#### 12. 查看文件大小(sparse file)
+#### 14. 查看文件大小(sparse file)
 
 ```shell
-$ ls -l file
--rw-r--r--  1 myself wheel  536870912 Apr  8 11:44 file
+  $ ls -l file
+  -rw-r--r--  1 myself wheel  536870912 Apr  8 11:44 file
 
-$ ls -lh file
--rw-r--r--  1 myself wheel   512M Apr  8 11:44 file
+  $ ls -lh file
+  -rw-r--r--  1 myself wheel   512M Apr  8 11:44 file
 
-$ du -h file //实际大小
-24K    file
+  $ du -h file //实际大小
+  24K    file
 
-$ du -B 1 file
-24576   file
+  $ du -B 1 file
+  24576   file
 
-$ ls -s --block-size=1 file
-24576 file
-```shell
+  $ ls -s --block-size=1 file
+  24576 file
+```
 
-#### 13. 检测https
+#### 15. 检测https
 
 ```shell
 curl -k -3 http://localhost:8443 | od -A n -t x1
 ```
 
-#### 13. 查看tcp端口连接数
+#### 16. 查看tcp端口连接数
 
 ```shell
 netstat -nat|grep -i "17001"|wc -l
