@@ -159,3 +159,32 @@ netstat -nat|grep -i "17001"|wc -l
     /tmp/swap swap swap defaults 0 0
 
 ```
+
+#### 18. 新建磁盘作为swap
+
+```shell
+ 1. 如果系统本身有swap，停止swap
+
+    # swapoff -a
+
+ 2. 新建磁盘分区使用fdisk，或者parted工具
+   
+    # fdisk /dev/sdc1
+
+ 3. 格式化swap
+ 
+    # mkswap  /dev/sdc1
+
+ 4. 启动新的的swap
+
+    # swapon /dev/sdc1
+
+ 5. 添加到系统自动挂载
+
+    # vim /etc/fstab
+
+    UUID=xxxxxx-xxx-xxx-xxx swap swap defaults 0 0
+
+    UUID=xxxxxx-xxx-xxx-xxx none swap sw 0 0（推荐）  
+    
+```
