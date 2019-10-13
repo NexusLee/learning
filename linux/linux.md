@@ -136,3 +136,26 @@ curl -k -3 http://localhost:8443 | od -A n -t x1
 ```shell
 netstat -nat|grep -i "17001"|wc -l
 ```
+
+#### 17. 用文件作为swap
+
+```shell
+ 1. 创建文件块大小（1G）
+
+    #  dd if=/dev/zero of=/tmp/swap bs=1M count=1024
+
+ 2. 格式化为swap
+
+    #  mkswap /tmp/swap
+
+ 3. 启用swap
+
+    # swapon /tmp/swap
+
+ 4. 添加到系统自动挂载（同上）
+
+    # vim /etc/fstab
+    
+    /tmp/swap swap swap defaults 0 0
+
+```
