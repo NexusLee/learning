@@ -188,3 +188,9 @@ netstat -nat|grep -i "17001"|wc -l
     UUID=xxxxxx-xxx-xxx-xxx none swap sw 0 0（推荐）  
     
 ```
+
+#### 19. tcp连接的状态和连接数量统计
+
+```shell
+   netstat -an | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+```
