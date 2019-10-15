@@ -194,3 +194,16 @@ netstat -nat|grep -i "17001"|wc -l
 ```shell
    netstat -an | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
+
+#### 20. linux 内核优化
+
+```shell 
+    # vim /etc/sysctl.conf
+    
+    net.ipv4.tcp_syncookies = 1 
+    net.ipv4.tcp_tw_reuse = 1 
+    net.ipv4.tcp_tw_recycle = 1
+    net.ipv4.tcp_fin_timeout = 30
+    net.ipv4.tcp_max_syn_backlog = 8192
+    net.ipv4.tcp_max_tw_buckets = 5000
+```
