@@ -207,3 +207,11 @@ netstat -nat|grep -i "17001"|wc -l
     net.ipv4.tcp_max_syn_backlog = 8192
     net.ipv4.tcp_max_tw_buckets = 5000
 ```
+
+#### 21. 修改拥塞窗口大小
+
+```shell 
+  ip route | while read p; do
+      ip route change $p initcwnd 10;
+  done
+```
