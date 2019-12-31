@@ -1,4 +1,4 @@
-### tomcat 远程调试
+### 1. tomcat 远程调试
 ```sh
 if [ "$1" = "jpda" ] ; then
   if [ -z "$JPDA_TRANSPORT" ]; then
@@ -21,3 +21,5 @@ catalina.sh jpda start
 ```
 
 ![avatar](https://github.com/NexusLee/learning/blob/master/java/remotedebug.png)
+
+### 2. dubbo remote rpc exception
