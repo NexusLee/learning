@@ -215,3 +215,10 @@ netstat -nat|grep -i "17001"|wc -l
       ip route change $p initcwnd 10;
   done
 ```
+
+#### 22. linux查找大文件 
+
+```shell
+  find path -type f -size +1000M -print0 | xargs -0 ls -l
+```
+
