@@ -88,7 +88,19 @@ docker network inspect
 ### 14. 删除 none 镜像
 
 ```
-    $ docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }') //停止容器
-    $ docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')  //删除容器 
-    $ docker rmi $(docker images | grep "none" | awk '{print $3}')  //删除镜像 
+$ docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }') //停止容器
+$ docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')  //删除容器 
+$ docker rmi $(docker images | grep "none" | awk '{print $3}')  //删除镜像 
+```
+
+### 15. 保存镜像
+
+```
+-a :提交的镜像作者；
+-c :使用Dockerfile指令来创建镜像；
+-m :提交时的说明文字；
+-p :在commit时，将容器暂停。
+将容器a404c6c174a2 保存为新的镜像,并添加提交人信息和说明信息
+
+docker commit -a "runoob.com" -m "my apache" a404c6c174a2 mymysql:v1
 ```
