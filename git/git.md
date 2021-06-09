@@ -75,3 +75,27 @@ git merge upstream/master
 ```shell
 git branch --set-upstream-to=origin/<branch> release
 ```
+
+#### git 删除大文件
+
+```shell
+git verify-pack -v .git/objects/pack/pack-*.idx | sort -k 3 -g | tail -5
+
+git rev-list --objects --all | grep 35047899fd3b0dd637b0da2086e7a70fe27b1ccb
+
+git log --pretty=oneline --branches --  huge.exe
+
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch huge.exe'
+
+rm -rf .git/refs/original/
+ 
+git reflog expire --expire=now --all
+ 
+git fsck --full --unreachable
+ 
+git repack -A -d
+ 
+git gc --aggressive --prune=now
+ 
+git push --force
+```
